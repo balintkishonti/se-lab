@@ -31,7 +31,7 @@ public class TorpedoStore {
 
   public boolean fire(int numberOfTorpedos){
     if(numberOfTorpedos < 1 || numberOfTorpedos > this.torpedoCount){
-      throw new IllegalArgumentException("numberOfTorpedos");
+      throw new IllegalArgumentException("numberOfTorpedos"); //No torpedos were fired, as the number of requested torpedos was either negative or more than available
     }
 
     boolean success = false;
@@ -41,7 +41,8 @@ public class TorpedoStore {
 
     if (r >= FAILURE_RATE) {
       // successful firing
-      this.torpedoCount -= numberOfTorpedos;
+      this.torpedoCount = this.torpedoCount - numberOfTorpedos;
+      // success
       success = true;
     } else {
       // simulated failure
